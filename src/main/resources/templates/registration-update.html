@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<title>Create registration</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<form action="#" th:action="@{/registration-update}" th:object="${registration}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="Category">Category</label>
+    <input class="form-control"  type="text" th:field="*{Category}" id="Category" placeholder="Category">
+    <br/>
+    <label for="ClientID">Client's ID</label>
+    <input class="form-control" type="text" th:field="*{ClientID}" id="ClientID" placeholder="ClientID">
+    <br/>
+    <label for="Diagnosis">Diagnosis</label>
+    <input class="form-control" type="text" th:field="*{Diagnosis}" id="Diagnosis" placeholder="Diagnosis">
+    <br/>
+    <label for="Doctor">Doctor</label>
+    <input class="form-control" type="text" th:field="*{Doctor}" id="Doctor" placeholder="Doctor">
+    <br/>
+    <label for="VisitDate">Visit Date</label>
+    <input class="form-control" type="date" th:field="*{VisitDate}" id="VisitDate" placeholder="VisitDate">
+    <br/>
+    <label for="DischargeDate">Discharge Date</label>
+    <input class="form-control" type="date" th:field="*{DischargeDate}" id="DischargeDate" placeholder="DischargeDate">
+    <br/>
+    <label for="Severity">Severity</label>
+    <input class="form-control" type="text" th:field="*{Severity}" id="Severity" placeholder="Doctor">
+    <br/>
+    <input class="btn btn-primary" type="submit" value="Update Client">
+</form>
+</body>
+</html>

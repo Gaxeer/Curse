@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<form action="#" th:action="@{/diagnosis-create}" th:object="${diagnosis}" method="post">
+    <label for="DiagnosisName">Diagnosis Name</label>
+    <input type="text" th:field="*{DiagnosisName}" id="DiagnosisName" placeholder="DiagnosisName">
+    <br/>
+    <label for="TreatmentDuration">Treatment Duration</label>
+    <input type="text" th:field="*{TreatmentDuration}" id="TreatmentDuration" placeholder="TreatmentDuration">
+    <br/>
+    <label for="Tariff">Tariff</label>
+    <input type="text" th:field="*{Tariff}" id="Tariff" placeholder="Tariff">
+    <br/>
+    <input type="submit" value="Create diagnosis">
+</form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<form action="#" th:action="@{/doctor-create}" th:object="${doctor}" method="post">
+    <label for="DoctorID">Doctor's ID</label>
+    <input readonly type="number" th:field="*{doctorID}" id="doctorID" placeholder="doctorID">
+    <br/>
+    <label for="DoctorName">Doctor's Name</label>
+    <input type="text" th:field="*{DoctorName}" id="DoctorName" placeholder="DoctorName">
+    <br/>
+    <label for="DoctorTariff">Doctor's Tariff</label>
+    <input type="text" th:field="*{DoctorTariff}" id="DoctorTariff" placeholder="DoctorTariff">
+    <br/>
+    <input type="submit" value="Create doctor">
+</form>
+</body>
+</html>

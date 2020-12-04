@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<form action="#" th:action="@{/client-create}" th:object="${client}" method="post">
+    <label for="ClientID">ClientID</label>
+    <input readonly type="number" th:field="*{ClientID}" id="ClientID" placeholder="ClientID">
+    <br/>
+    <label for="FirstName">First Name</label>
+    <input type="text" th:field="*{FirstName}" id="FirstName" placeholder="FirstName">
+    <br/>
+    <label for="LastName">Last Name</label>
+    <input type="text" th:field="*{LastName}" id="LastName" placeholder="LastName">
+    <br/>
+    <input type="submit" value="Create Client">
+</form>
+</body>
+</html>

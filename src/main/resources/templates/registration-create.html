@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<form action="#" th:action="@{/registration-create}" th:object="${registration}" method="post">
+    <label for="Category">Category</label>
+    <input type="text" th:field="*{Category}" id="Category" placeholder="Category">
+    <br/>
+    <label for="ClientID">Client's ID</label>
+    <input type="text" th:field="*{ClientID}" id="ClientID" placeholder="ClientID">
+    <br/>
+    <label for="Diagnosis">Diagnosis</label>
+    <input type="text" th:field="*{Diagnosis}" id="Diagnosis" placeholder="Diagnosis">
+    <br/>
+    <label for="Doctor">Doctor</label>
+    <input type="text" th:field="*{Doctor}" id="Doctor" placeholder="Doctor">
+    <br/>
+    <label for="VisitDate">Visit Date</label>
+    <input type="date" th:field="*{VisitDate}" id="VisitDate" placeholder="VisitDate">
+    <br/>
+    <label for="DischargeDate">Discharge Date</label>
+    <input type="date" th:field="*{DischargeDate}" id="DischargeDate" placeholder="DischargeDate">
+    <br/>
+    <label for="Severity">Severity</label>
+    <input type="text" th:field="*{Severity}" id="Severity" placeholder="Doctor">
+    <br/>
+    <input type="submit" value="Create Client">
+</form>
+</body>
+</html>

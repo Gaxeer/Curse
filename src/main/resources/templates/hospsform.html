@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<form action="#" th:action="@{/hosps}" th:object="${client}" method="post">
+    <label for="ClientID">Client ID</label>
+    <input class="form-control" type="number" th:field="*{ClientID}" id="ClientID" placeholder="Enter Client ID">
+    <input class="btn btn-primary" type="submit" value="Get Clients">
+    <br/>
+</form>
+</body>
+<style>
+    .form-control{
+        width: 10%;
+    }
+</style>
+</html>

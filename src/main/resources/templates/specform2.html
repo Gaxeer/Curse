@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<form action="#" th:action="@{/summary}" th:object="${PaymentSum}" method="post">
+    <label for="StartDate">Start Date</label>
+    <input class="form-control" type="date" th:field="*{StartDate}" id="StartDate" placeholder="StartDate">
+    <br/>
+    <label for="StartDate">End Date</label>
+    <input class="form-control" type="date" th:field="*{EndDate}" id="EndDate" placeholder="EndDate">
+    <br/>
+    <input class="btn btn-primary" type="submit" value="Get Specific Clients">
+</form>
+</body>
+</html>

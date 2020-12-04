@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnoses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div id="whole_table" th:switch="${diagnoses}">
+    <h2 style="color: white; text-align: center" th:case="null">No registrations found!</h2>
+    <div th:case="*">
+        <h2 style="color: white; text-align: center;" >Diagnoses</h2>
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Diagnosis ID</th>
+                <th scope="col">Diagnosis Name</th>
+                <th scope="col">Treatment Duration</th>
+                <th scope="col">Tariff</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="diagnosis : ${diagnoses}">
+                <td th:text="${diagnosis.DiagnosisID}"></td>
+                <td th:text="${diagnosis.DiagnosisName}"></td>
+                <td th:text="${diagnosis.TreatmentDuration}"></td>
+                <td th:text="${diagnosis.Tariff}"></td>
+                <td style="cursor: pointer; text-align: center;" th:onclick="|window.location.href='@{diagnosis-update/{id}(id=${diagnosis.DiagnosisID})}'|">Edit</a></td>
+                <td style="cursor: pointer; text-align: center;" th:onclick="|window.location.href='@{diagnosis-delete/{id}(id=${diagnosis.DiagnosisID})}'|">Delete</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col"><a class="btn btn-primary btn-block" href="/diagnosis-create">Create diagnosis</a></div>
+        <div class="col"><a class="btn btn-success btn-block" href="/">Main menu</a></div>
+    </div>
+</div>
+</body>
+<style>
+    .btn{
+        font-size: 20px;
+    }
+    .table{
+        border-radius: 10px;
+    }
+    body{
+        background-color: black;
+    }
+
+    #whole_table {
+        margin: 7% 20% 0;
+    }
+    .table-dark th, .table-dark td{
+        text-align: center;
+        font-size: 20px
+    }
+    td:hover{
+        background-color: grey;
+        opacity: 80%;
+        transition-duration: 0.45s;
+    }
+    .table-dark th, .table-dark thead th{
+        border: none;
+        font-size: 20px;
+    }
+
+</style>
+</html>
