@@ -13,9 +13,16 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShortTreatment {
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date StartDate;
+
+    private long client_id;
+
+    private String first_name;
+
+    private String last_name;
 
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date EndDate;
+    private Date Visit_Date;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date Discharge_Date;
 }

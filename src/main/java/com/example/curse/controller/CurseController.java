@@ -1,10 +1,12 @@
 package com.example.curse.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.curse.model.*;
 import com.example.curse.queryresults.BestDoc;
+import com.example.curse.queryresults.ShortTreatment;
 import com.example.curse.queryresults.SpecificDate;
 import com.example.curse.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,10 +65,10 @@ public class CurseController {
         return "queryresults";
     }
 
-    @GetMapping("/barelyIll")
-    public String BarelyIll(Model model){
-        List<String> BarelyIll = registrationService.BarelyIll();
-        model.addAttribute("BarelyIll", BarelyIll);
+    @GetMapping("/shorttreatment")
+    public String ShortTreatment(Model model) throws ParseException {
+        ArrayList<ShortTreatment> ShortTreatment = registrationService.ShortTreatment();
+        model.addAttribute("ShortTreatment", ShortTreatment);
         return "queryresults";
     }
 
@@ -122,8 +124,8 @@ public class CurseController {
 
     @GetMapping("/best-doc")
     public String BestDoc(Model model){
-        ArrayList<String> bestDoc = registrationService.BestDoctor();
-        System.out.println(bestDoc);
+        List<BestDoc> bestDoc = registrationService.BestDoctor();
+        System.out.println(bestDoc.get(0));
         model.addAttribute("BestDoc", bestDoc);
         return "queryresults";
     }

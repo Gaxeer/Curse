@@ -8,15 +8,16 @@
 <body>
 </br>
 <div th:each="DataUnit:${Data}">
-    <span style="margin:10px;" th:text="${DataUnit}" />
+    <span style="margin:10px;" th:text="${DataUnit}"></span>
 <br/>
 </div>
 <div th:each="Doc:${BestDoc}">
-    <span style="margin:10px;" th:text="${Doc}"></span>
+    <span style="margin:10px;" th:text="${Doc.DoctorName}"></span>
+    <span style="margin:10px;" th:text="${Doc.Patients}"></span>
     <br/>
 </div>
-<div th:each="Client:${BarelyIll}">
-    <span style="margin:10px;" th:text="${Client}" />
+<div th:each="Client:${ShortTreatment}">
+    <span style="margin:10px;" th:text="${Client}"></span>
     <br/>
 </div>
 <div th:each="sumd:${SumDiag}">

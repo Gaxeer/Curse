@@ -12,17 +12,19 @@ import java.util.List;
 
 public interface RegistrationRepository extends JpaRepository<Registration, Long> {
 
-    @Query(value = "SELECT first_Name, last_Name, visit_date FROM registrations join clients c on c.client_id = registrations.client_id WHERE visit_date > ?1 AND visit_date < ?2", nativeQuery = true)
+
+
+    @Query(value = "SELECT first_Name, last_Name, visit_date, discharge_date, doctor_name FROM registrations join clients c on c.client_id = registrations.client_id join doctors d on d.doctor_id = registrations.doctor WHERE visit_date > ?1 AND visit_date < ?2", nativeQuery = true)
     List<String> SpecificClients(@DateTimeFormat(pattern = "yyyy-mm-dd") Date StartDate, @DateTimeFormat(pattern = "yyyy-mm-dd") Date EndDate);
 
     @Query(value = "Select * from BestDoc()", nativeQuery = true)
     ArrayList<String> BestDoctor();
 
-    @Query(value = "select * from registrations natural join (select diagnosis diag, max(payment) as max from registrations group by diagnosis) as sub1 where diagnosis=sub1.diag and payment=max order by id ASC", nativeQuery = true)
+    @Query(value = "select * from registrations natural join (select diagnosis diag, max(payment) as max from registrations group by diagnosis) as sub1 where diagnosis=sub1.diag and payment=max order by id", nativeQuery = true)
     List<Registration> MostExpensiveTreatment();
 
-    @Query(value = "select r.client_id, first_name, last_name from clients join registrations r on clients.client_id = r.client_id where discharge_date-visit_date<='10'", nativeQuery = true)
-    List<String> BarelyIll();
+    @Query(value = "select r.client_id, first_name, last_name, visit_date, discharge_date from clients join registrations r on clients.client_id = r.client_id where discharge_date-visit_date<='10'", nativeQuery = true)
+    List<String> ShortTreatment();
 
     @Query(value = "select * from SumDiag()", nativeQuery = true)
     List<String> SumDiag();
