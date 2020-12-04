@@ -295,12 +295,12 @@ public class CurseController {
         return "doctor-list";
     }
 
-    @GetMapping("/doctors-create")
+    @GetMapping("/doctor-create")
     public String createDoctorForm(Doctor doctor){
         return "doctor-create";
     }
 
-    @PostMapping("/doctors-create")
+    @PostMapping("/doctor-create")
     public String createDoctor(Doctor doctor){
         doctorService.saveDoctor(doctor);
         return "redirect:/doctors";
