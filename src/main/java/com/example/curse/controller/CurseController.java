@@ -10,11 +10,17 @@ import com.example.curse.queryresults.ShortTreatment;
 import com.example.curse.queryresults.SpecificDate;
 import com.example.curse.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 public class CurseController {
@@ -54,7 +60,7 @@ public class CurseController {
     }
 
     @GetMapping("/registration-create")
-    public String createRegistrationForm(Registration registration){
+    public String createRegistrationForm(@Valid Registration registration){
         return "registration-create";
     }
 
@@ -109,14 +115,14 @@ public class CurseController {
     }
 
     @PostMapping("/summary")
-    public String PaySum(SpecificDate specificDate, Model model){
+    public String PaySum(@Valid SpecificDate specificDate, Model model){
         List<String> PaySum = registrationService.PaymentSum(specificDate);
         model.addAttribute("Data", PaySum);
         return "queryresults";
     }
 
     @PostMapping("/specific")
-    public String SpecificRegistrations(SpecificDate specificDate, Model model){
+    public String SpecificRegistrations(@Valid SpecificDate specificDate, Model model){
         List<String> specificRegistrations = registrationService.SpecificRegistration(specificDate);
         model.addAttribute("Data", specificRegistrations);
         return "queryresults";
@@ -150,7 +156,7 @@ public class CurseController {
     }
 
     @PostMapping("/registration-update")
-    public String updateRegistration(Registration registration) {
+    public String updateRegistration(@Valid Registration registration) {
         registrationService.saveRegistration(registration);
         return "redirect:/registrations";
     }
@@ -165,12 +171,12 @@ public class CurseController {
     }
 
     @GetMapping("/client-create")
-    public String createClientForm(Client client){
+    public String createClientForm(@Valid Client client){
         return "client-create";
     }
 
     @PostMapping("/client-create")
-    public String createClient(Client client){
+    public String createClient(@Valid Client client){
         clientService.saveClient(client);
         return "redirect:/clients";
     }
@@ -296,12 +302,12 @@ public class CurseController {
     }
 
     @GetMapping("/doctor-create")
-    public String createDoctorForm(Doctor doctor){
+    public String createDoctorForm(@Valid Doctor doctor){
         return "doctor-create";
     }
 
     @PostMapping("/doctor-create")
-    public String createDoctor(Doctor doctor){
+    public String createDoctor(@Valid Doctor doctor){
         doctorService.saveDoctor(doctor);
         return "redirect:/doctors";
     }
@@ -324,5 +330,7 @@ public class CurseController {
         doctorService.saveDoctor(doctor);
         return "redirect:/doctors";
     }
+    
+
 
 }

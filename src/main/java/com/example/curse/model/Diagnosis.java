@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -16,16 +19,21 @@ import javax.persistence.*;
 public class Diagnosis {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="Diagnosis_ID")
     private long DiagnosisID;
 
+    @NotBlank
     @Column(name="Diagnosis_Name")
     private String DiagnosisName;
 
+    @NotBlank
     @Column(name="Treatment_Duration")
     private float TreatmentDuration;
 
+    @NotBlank
+    @Min(value = 0, message= "Tariff can't be negative")
     @Column(name="Tariff")
     private float Tariff;
 }

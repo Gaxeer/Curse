@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Data
@@ -17,13 +19,17 @@ import javax.validation.constraints.NotBlank;
 public class Doctor {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="Doctor_ID")
     private long DoctorID;
 
+    @NotBlank
     @Column(name="Doctor_Name")
+    @Size(min = 2, max = 60, message = "Name should be in range between 2 and 60")
     private String DoctorName;
 
+    @NotBlank
     @Column(name="Doctor_Tariff")
     private int DoctorTariff;
 }
