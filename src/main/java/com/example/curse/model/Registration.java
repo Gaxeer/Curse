@@ -57,7 +57,7 @@ public class Registration {
 
         @Column(name="Severity")
         @Min(value=1, message = "Value can't be less than 1")
-        @Max(value=1, message = "Value can't be greater than 2")
+        @Max(value=2, message = "Value can't be greater than 2")
         private float Severity;
 
         @Column(name="Payment")
