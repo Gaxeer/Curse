@@ -1,7 +1,6 @@
 package com.example.curse.repo;
 
 import com.example.curse.model.Client;
-import com.example.curse.queryresults.AvgPayment;
 import com.example.curse.queryresults.ClientHosps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
