@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,7 +30,7 @@ public class Doctor {
     @Size(min = 2, max = 60, message = "Name should be in range between 2 and 60")
     private String DoctorName;
 
-    @NotBlank
+    @Min(value = 0, message= "Tariff can't be negative")
     @Column(name="Doctor_Tariff")
     private int DoctorTariff;
 }

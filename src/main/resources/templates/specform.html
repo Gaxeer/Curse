@@ -8,10 +8,10 @@
 <body>
 <form action="#" th:action="@{/specific}" th:object="${SpecificDate}" method="post">
     <label for="StartDate">Start Date</label>
-    <input class="form-control" type="date" th:field="*{StartDate}" id="StartDate" placeholder="Start Date">
+    <input class="form-control" type="date" th:field="*{StartDate}" id="StartDate" placeholder="Start Date" required>
     <br/>
     <label for="StartDate">End Date</label>
-    <input class="form-control" type="date" th:field="*{EndDate}" id="EndDate" placeholder="End Date">
+    <input class="form-control" type="date" th:field="*{EndDate}" id="EndDate" placeholder="End Date" required>
     <br/>
     <input class="btn btn-primary" type="submit" value="Submit">
 </form>

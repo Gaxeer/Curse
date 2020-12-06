@@ -13,9 +13,21 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UnderTreatment {
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date StartDate;
+
+    private long client_id;
+
+    private String first_name;
+
+    private String last_name;
+
+    private String diagnosis_name;
+
+    private String doctor_name;
 
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date EndDate;
+    private Date visit_date;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date discharge_date;
+
 }

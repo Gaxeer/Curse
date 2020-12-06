@@ -22,7 +22,7 @@
                 <td th:text="${category.CategoryID}"></td>
                 <td th:text="${category.Discount}"></td>
                 <td style="cursor: pointer; text-align: center;" th:onclick="|window.location.href='@{category-update/{id}(id=${category.CategoryID})}'|">Edit</td>
-                <td style="cursor: pointer; text-align: center;" th:onclick="|window.location.href='@{@{category-delete/{id}(id=${category.CategoryID})}'|">Delete</td>
+                <td style="cursor: pointer; text-align: center;" th:onclick="|window.location.href='@{category-delete/{id}(id=${category.CategoryID})}'|">Delete</td>
             </tr>
             </tbody>
         </table>

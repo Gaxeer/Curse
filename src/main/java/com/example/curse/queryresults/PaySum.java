@@ -12,10 +12,14 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentSum {
+public class PaySum {
+
+    private float payment_per_date;
+
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date StartDate;
 
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date EndDate;
 }
+

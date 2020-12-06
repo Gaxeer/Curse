@@ -7,28 +7,28 @@
 <body>
 <form class="form-1" action="#" th:action="@{/registration-update}" th:object="${registration}" method="post">
     <label for="id">ID</label>
-    <input class="form-control" readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <input class="form-control" readonly type="number" th:field="*{id}" id="id" placeholder="ID" required>
     <br/>
     <label for="Category">Category</label>
-    <input class="form-control"  type="text" th:field="*{Category}" id="Category" placeholder="Category">
+    <input class="form-control"  type="number" th:field="*{Category}" id="Category" placeholder="Category" required min="1">
     <br/>
     <label for="ClientID">Client's ID</label>
-    <input class="form-control" type="text" th:field="*{ClientID}" id="ClientID" placeholder="ClientID">
+    <input class="form-control" type="number" th:field="*{ClientID}" id="ClientID" placeholder="ClientID" required min="1">
     <br/>
     <label for="Diagnosis">Diagnosis</label>
-    <input class="form-control" type="text" th:field="*{Diagnosis}" id="Diagnosis" placeholder="Diagnosis">
+    <input class="form-control" type="number" th:field="*{Diagnosis}" id="Diagnosis" placeholder="Diagnosis" required min="1">
     <br/>
     <label for="Doctor">Doctor</label>
-    <input class="form-control" type="text" th:field="*{Doctor}" id="Doctor" placeholder="Doctor">
+    <input class="form-control" type="number" th:field="*{Doctor}" id="Doctor" placeholder="Doctor" required min="1">
     <br/>
     <label for="VisitDate">Visit Date</label>
-    <input class="form-control" type="date" th:field="*{VisitDate}" id="VisitDate" placeholder="VisitDate">
+    <input class="form-control" type="date" th:field="*{VisitDate}" id="VisitDate" placeholder="VisitDate" required>
     <br/>
     <label for="DischargeDate">Discharge Date</label>
-    <input class="form-control" type="date" th:field="*{DischargeDate}" id="DischargeDate" placeholder="DischargeDate">
+    <input class="form-control" type="date" th:field="*{DischargeDate}" id="DischargeDate" placeholder="DischargeDate" required>
     <br/>
     <label for="Severity">Severity</label>
-    <input class="form-control" type="text" th:field="*{Severity}" id="Severity" placeholder="Doctor">
+    <input class="form-control" type="number" th:field="*{Severity}" id="Severity" placeholder="Doctor" required min="1" max="2" step="0.01">
     <br/>
     <input class="btn btn-primary" type="submit" value="Update Client">
 </form>

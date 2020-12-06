@@ -1,10 +1,7 @@
 package com.example.curse.repo;
 
 import com.example.curse.model.Registration;
-import com.example.curse.queryresults.BestDoc;
-import com.example.curse.queryresults.ClientsByDate;
-import com.example.curse.queryresults.ShortTreatment;
-import com.example.curse.queryresults.SpecificDate;
+import com.example.curse.queryresults.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +36,7 @@ public class RegistrationService {
     }
 
     public ArrayList<ClientsByDate> SpecificRegistration(SpecificDate specificDate) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         List<String> RawClients = registrationRepository.SpecificClients(specificDate.getStartDate(), specificDate.getEndDate());
         ArrayList<ClientsByDate> ParsedClients = new ArrayList<>();
         List<String> BufferClient;
@@ -88,19 +85,53 @@ public class RegistrationService {
         return ParsedPatients;
     }
 
-    public List<String> SumDiag(){
-        return registrationRepository.SumDiag();
+    public List<AvgPayment> AvgPayment(){
+        List<String> RawAvgPayments = registrationRepository.AvgPayment();
+        ArrayList<AvgPayment> ParsedAvgPayments = new ArrayList<>();
+        List<String> Buffer;
+        for(String rawAvgPayment: RawAvgPayments){
+            Buffer = Arrays.asList(rawAvgPayment.split(","));
+            AvgPayment avgPayment = new AvgPayment(Buffer.get(0), Float.parseFloat(Buffer.get(1)));
+            ParsedAvgPayments.add(avgPayment);
+        }
+        return ParsedAvgPayments;
     }
 
-    public List<String> AvgPayment(){
-        return registrationRepository.AvgPayment();
+    public PaySum PaymentSum(SpecificDate specificDate){
+        float sum;
+        if (registrationRepository.PaymentSum(specificDate.getStartDate(), specificDate.getEndDate()) != null) {
+            sum = Float.parseFloat(registrationRepository.PaymentSum(specificDate.getStartDate(), specificDate.getEndDate()));
+        }else {
+            sum = 0f;
+        }
+        PaySum paySum = new PaySum(sum, specificDate.getStartDate(), specificDate.getEndDate());
+        return paySum;
     }
 
-    public List<String> PaymentSum(SpecificDate specificDate){
-        return registrationRepository.PaymentSum(specificDate.getStartDate(), specificDate.getEndDate());
+    public List<UnderTreatment> UnderTreatment() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<String> RawUnderTreatment = registrationRepository.UnderTreatment();
+        ArrayList<UnderTreatment> ParsedUnderTreatment = new ArrayList<>();
+        List<String> Buffer;
+        for(String rawUnderTreatment: RawUnderTreatment){
+            Buffer = Arrays.asList(rawUnderTreatment.split(","));
+            UnderTreatment underTreatment = new UnderTreatment(Long.parseLong(Buffer.get(0)), (Buffer.get(1)),(Buffer.get(2)), Buffer.get(3), Buffer.get(4), simpleDateFormat.parse(Buffer.get(5)), simpleDateFormat.parse(Buffer.get(6)));
+            ParsedUnderTreatment.add(underTreatment);
+        }
+        return ParsedUnderTreatment;
+
     }
 
-    public List<String> UnderTreatment(){
-        return registrationRepository.UnderTreatment();
+    public List<SumDiag> SumDiags() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<String> RawSumDiags = registrationRepository.SumDiags();
+        ArrayList<SumDiag> ParsedSumDiags = new ArrayList<>();
+        List<String> Buffer;
+        for(String rawSumDiag: RawSumDiags){
+            Buffer = Arrays.asList(rawSumDiag.split(","));
+            SumDiag sumDiag = new SumDiag((Buffer.get(0)), Long.parseLong(Buffer.get(1)), simpleDateFormat.parse(Buffer.get(3)), simpleDateFormat.parse(Buffer.get(4)));
+            ParsedSumDiags.add(sumDiag);
+        }
+        return ParsedSumDiags;
     }
 }

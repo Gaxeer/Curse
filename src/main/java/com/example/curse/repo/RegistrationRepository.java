@@ -27,15 +27,15 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
     List<String> ShortTreatment();
 
     @Query(value = "select * from SumDiag()", nativeQuery = true)
-    List<String> SumDiag();
+    List<String> SumDiags();
 
     @Query(value = "select diagnosis_name, avg(payment) as average_payment from registrations join diagnoses d on registrations.diagnosis = d.diagnosis_id group by diagnosis_name", nativeQuery = true)
     List<String> AvgPayment();
 
-    @Query(value = "SELECT sum(payment) FROM registrations WHERE discharge_date > ?1 AND discharge_date < ?2", nativeQuery = true)
-    List<String> PaymentSum(@DateTimeFormat(pattern = "yyyy-mm-dd") Date StartDate, @DateTimeFormat(pattern = "yyyy-mm-dd") Date EndDate);
+    @Query(value = "SELECT sum(payment) as payment_per_period FROM registrations WHERE discharge_date > ?1 AND discharge_date < ?2", nativeQuery = true)
+    String PaymentSum(@DateTimeFormat(pattern = "yyyy-mm-dd") Date StartDate, @DateTimeFormat(pattern = "yyyy-mm-dd") Date EndDate);
 
-    @Query(value = "select c.client_id, first_name, last_name, diagnosis_name from registrations join clients c on registrations.client_id = c.client_id join diagnoses d on d.diagnosis_id = registrations.diagnosis where discharge_date is null order by diagnosis_name", nativeQuery = true)
+    @Query(value = "select c.client_id, first_name, last_name, diagnosis_name, doctor_name, visit_date, discharge_date from registrations join clients c on registrations.client_id = c.client_id join diagnoses d on d.diagnosis_id = registrations.diagnosis join doctors d2 on d2.doctor_id = registrations.doctor where discharge_date > current_date order by diagnosis_name", nativeQuery = true)
     List<String> UnderTreatment();
 
 }

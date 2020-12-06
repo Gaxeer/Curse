@@ -8,25 +8,25 @@
 <body>
 <form action="#" th:action="@{/registration-create}" th:object="${registration}" method="post">
     <label for="Category">Category</label>
-    <input type="text" th:field="*{Category}" id="Category" placeholder="Category">
+    <input type="number" th:field="*{Category}" id="Category" placeholder="Category" required min="1">
     <br/>
     <label for="ClientID">Client's ID</label>
-    <input type="text" th:field="*{ClientID}" id="ClientID" placeholder="ClientID">
+    <input type="number" th:field="*{ClientID}" id="ClientID" placeholder="ClientID" required min="1">
     <br/>
     <label for="Diagnosis">Diagnosis</label>
-    <input type="text" th:field="*{Diagnosis}" id="Diagnosis" placeholder="Diagnosis">
+    <input type="number" th:field="*{Diagnosis}" id="Diagnosis" placeholder="Diagnosis" required min="1">
     <br/>
     <label for="Doctor">Doctor</label>
-    <input type="text" th:field="*{Doctor}" id="Doctor" placeholder="Doctor">
+    <input type="number" th:field="*{Doctor}" id="Doctor" placeholder="Doctor" required min="1">
     <br/>
     <label for="VisitDate">Visit Date</label>
-    <input type="date" th:field="*{VisitDate}" id="VisitDate" placeholder="VisitDate">
+    <input type="date" th:field="*{VisitDate}" id="VisitDate" placeholder="VisitDate" required>
     <br/>
     <label for="DischargeDate">Discharge Date</label>
-    <input type="date" th:field="*{DischargeDate}" id="DischargeDate" placeholder="DischargeDate">
+    <input type="date" th:field="*{DischargeDate}" id="DischargeDate" placeholder="DischargeDate" required>
     <br/>
     <label for="Severity">Severity</label>
-    <input type="text" th:field="*{Severity}" id="Severity" placeholder="Doctor">
+    <input type="number" th:field="*{Severity}" id="Severity" placeholder="Doctor" required min="1" max="2" step="0.01">
     <br/>
     <input type="submit" value="Create Client">
 </form>

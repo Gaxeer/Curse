@@ -14,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SpecificDate {
+
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date StartDate;
 

@@ -10,7 +10,7 @@
     <input readonly type="number" th:field="*{CategoryID}" id="CategoryID" placeholder="categoryID">
     <br/>
     <label for="Discount">Discount (0-1)</label>
-    <input type="text" th:field="*{Discount}" id="Discount" placeholder="Discount">
+    <input type="number" th:field="*{Discount}" id="Discount" placeholder="Discount" required min="0" max="1" step="0.01">
     <br/>
     <input type="submit" value="Update category">
 </form>

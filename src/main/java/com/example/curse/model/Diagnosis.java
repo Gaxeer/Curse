@@ -24,15 +24,13 @@ public class Diagnosis {
     @Column(name="Diagnosis_ID")
     private long DiagnosisID;
 
-    @NotBlank
+
     @Column(name="Diagnosis_Name")
     private String DiagnosisName;
 
-    @NotBlank
     @Column(name="Treatment_Duration")
     private float TreatmentDuration;
 
-    @NotBlank
     @Min(value = 0, message= "Tariff can't be negative")
     @Column(name="Tariff")
     private float Tariff;

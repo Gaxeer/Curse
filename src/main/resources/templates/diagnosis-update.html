@@ -10,13 +10,13 @@
     <input readonly type="number" th:field="*{DiagnosisID}" id="DiagnosisID" placeholder="DiagnosisID">
     <br/>
     <label for="DiagnosisName">Diagnosis Name</label>
-    <input type="text" th:field="*{DiagnosisName}" id="DiagnosisName" placeholder="DiagnosisName">
+    <input type="text" th:field="*{DiagnosisName}" id="DiagnosisName" placeholder="DiagnosisName" required minlength="2" maxlength="30">
     <br/>
     <label for="TreatmentDuration">Treatment Duration</label>
-    <input type="text" th:field="*{TreatmentDuration}" id="TreatmentDuration" placeholder="TreatmentDuration">
+    <input type="number" th:field="*{TreatmentDuration}" id="TreatmentDuration" placeholder="TreatmentDuration" required min="1">
     <br/>
     <label for="Tariff">Tariff</label>
-    <input type="text" th:field="*{Tariff}" id="Tariff" placeholder="Tariff">
+    <input type="number" th:field="*{Tariff}" id="Tariff" placeholder="Tariff" required min="0">
     <br/>
     <input type="submit" value="Update diagnosis">
 </form>

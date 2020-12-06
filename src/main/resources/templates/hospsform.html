@@ -8,7 +8,7 @@
 <body>
 <form action="#" th:action="@{/hosps}" th:object="${client}" method="post">
     <label for="ClientID">Client ID</label>
-    <input class="form-control" type="number" th:field="*{ClientID}" id="ClientID" placeholder="Enter Client ID">
+    <input class="form-control" type="number" th:field="*{ClientID}" id="ClientID" placeholder="Enter Client ID" required min="1">
     <input class="btn btn-primary" type="submit" value="Get Clients">
     <br/>
 </form>

@@ -5,22 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.curse.model.*;
-import com.example.curse.queryresults.BestDoc;
-import com.example.curse.queryresults.ClientsByDate;
-import com.example.curse.queryresults.ShortTreatment;
-import com.example.curse.queryresults.SpecificDate;
+import com.example.curse.queryresults.*;
 import com.example.curse.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -61,7 +54,7 @@ public class CurseController {
     }
 
     @GetMapping("/registration-create")
-    public String createRegistrationForm(@Valid Registration registration){
+    public String createRegistrationForm(Registration registration){
         return "registration-create";
     }
 
@@ -80,16 +73,16 @@ public class CurseController {
     }
 
     @GetMapping("/sumdiag")
-    public String SumDiag(Model model){
-        List<String> SumDiag = registrationService.SumDiag();
-        System.out.println(SumDiag);
-        model.addAttribute("SumDiag", SumDiag);
+    public String SumDiag(Model model) throws ParseException {
+        List<SumDiag> sumDiag = registrationService.SumDiags();
+        System.out.println(sumDiag);
+        model.addAttribute("SumDiag", sumDiag);
         return "queryresults";
     }
 
     @GetMapping("/avgpayment")
     public String AvgPayment(Model model){
-        List<String> AvgPayment = registrationService.AvgPayment();
+        List<AvgPayment> AvgPayment = registrationService.AvgPayment();
         model.addAttribute("AvgPayment", AvgPayment);
         return "queryresults";
     }
@@ -102,9 +95,9 @@ public class CurseController {
     }
 
     @GetMapping("/undertreatment")
-    public String UnderTreatment(Model model){
-        List<String> UnderTreatment = registrationService.UnderTreatment();
-        model.addAttribute("Data", UnderTreatment);
+    public String UnderTreatment(Model model) throws ParseException {
+        List<UnderTreatment> underTreatment = registrationService.UnderTreatment();
+        model.addAttribute("UnderTreatment", underTreatment);
         return "queryresults";
     }
 
@@ -116,16 +109,17 @@ public class CurseController {
     }
 
     @PostMapping("/summary")
-    public String PaySum(@Valid SpecificDate specificDate, Model model){
-        List<String> PaySum = registrationService.PaymentSum(specificDate);
-        model.addAttribute("Data", PaySum);
+    public String PaySum(SpecificDate specificDate, Model model){
+        PaySum paySum = registrationService.PaymentSum(specificDate);
+
+        model.addAttribute("paySum", paySum);
         return "queryresults";
     }
 
     @PostMapping("/specific")
     public String SpecificRegistrations(SpecificDate specificDate, Model model) throws ParseException {
         ArrayList<ClientsByDate> clientsByDate = registrationService.SpecificRegistration(specificDate);
-        model.addAttribute("Data", clientsByDate);
+        model.addAttribute("clientsByDate", clientsByDate);
         System.out.println(clientsByDate);
         return "queryresults";
     }
@@ -139,7 +133,7 @@ public class CurseController {
     }
 
     @PostMapping("/registration-create")
-    public String createRegistration(Registration registration){
+    public String createRegistration(@Valid Registration registration){
         registrationService.saveRegistration(registration);
         return "redirect:/registrations";
     }
@@ -173,7 +167,7 @@ public class CurseController {
     }
 
     @GetMapping("/client-create")
-    public String createClientForm(@Valid Client client){
+    public String createClientForm(Client client){
         return "client-create";
     }
 
@@ -197,7 +191,7 @@ public class CurseController {
     }
 
     @PostMapping("/client-update")
-    public String updateClient(Client client) {
+    public String updateClient(@Valid Client client) {
         clientService.saveClient(client);
         return "redirect:/clients";
     }
@@ -210,8 +204,8 @@ public class CurseController {
     }
 
     @PostMapping("/hosps")
-    public String Hosps (Client client, Model model){
-        List<String> clienthosps = clientService.Hosps(client);
+    public String Hosps (Client client, Model model) throws ParseException {
+        List<ClientHosps> clienthosps = clientService.Hosps(client);
         model.addAttribute("clienthosps", clienthosps);
         return "queryresults";
     }
@@ -231,7 +225,7 @@ public class CurseController {
     }
 
     @PostMapping("/category-create")
-    public String createCategory(Category category){
+    public String createCategory(@Valid Category category){
         categoryService.saveCategory(category);
         return "redirect:/categories";
     }
@@ -250,7 +244,7 @@ public class CurseController {
     }
 
     @PostMapping("/category-update")
-    public String updateCategory(Category category) {
+    public String updateCategory(@Valid Category category) {
         categoryService.saveCategory(category);
         return "redirect:/categories";
     }
@@ -270,7 +264,7 @@ public class CurseController {
     }
 
     @PostMapping("/diagnosis-create")
-    public String createDiagnosis(Diagnosis diagnosis){
+    public String createDiagnosis(@Valid Diagnosis diagnosis){
         diagnosisService.saveDiagnosis(diagnosis);
         return "redirect:/diagnoses";
     }
@@ -289,7 +283,7 @@ public class CurseController {
     }
 
     @PostMapping("/diagnosis-update")
-    public String updateDiagnosis(Diagnosis diagnosis) {
+    public String updateDiagnosis(@Valid Diagnosis diagnosis) {
         diagnosisService.saveDiagnosis(diagnosis);
         return "redirect:/diagnoses";
     }
@@ -304,7 +298,7 @@ public class CurseController {
     }
 
     @GetMapping("/doctor-create")
-    public String createDoctorForm(@Valid Doctor doctor){
+    public String createDoctorForm(Doctor doctor){
         return "doctor-create";
     }
 
@@ -328,11 +322,9 @@ public class CurseController {
     }
 
     @PostMapping("/doctor-update")
-    public String updateDoctor(Doctor doctor) {
+    public String updateDoctor(@Valid Doctor doctor) {
         doctorService.saveDoctor(doctor);
         return "redirect:/doctors";
     }
-    
-
 
 }

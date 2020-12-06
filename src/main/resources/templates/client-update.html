@@ -10,10 +10,10 @@
     <input readonly type="number" th:field="*{ClientID}" id="ClientID" placeholder="ClientID">
     <br/>
     <label for="FirstName">First Name</label>
-    <input type="text" th:field="*{FirstName}" id="FirstName" placeholder="FirstName">
+    <input type="text" th:field="*{FirstName}" id="FirstName" placeholder="FirstName" required minlength="2" maxlength="30">
     <br/>
     <label for="LastName">Last Name</label>
-    <input type="text" th:field="*{LastName}" id="LastName" placeholder="LastName">
+    <input type="text" th:field="*{LastName}" id="LastName" placeholder="LastName" minlength="2" maxlength="30">
     <br/>
     <input type="submit" value="Update Client">
 </form>

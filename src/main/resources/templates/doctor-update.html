@@ -10,10 +10,10 @@
     <input readonly type="number" th:field="*{doctorID}" id="doctorID" placeholder="doctorID">
     <br/>
     <label for="DoctorName">Doctor Name</label>
-    <input type="text" th:field="*{DoctorName}" id="DoctorName" placeholder="DoctorName">
+    <input type="text" th:field="*{DoctorName}" id="DoctorName" placeholder="DoctorName" required minlength="2" maxlength="30">
     <br/>
     <label for="DoctorTariff">Doctor Tariff</label>
-    <input type="text" th:field="*{DoctorTariff}" id="DoctorTariff" placeholder="DoctorTariff">
+    <input type="number" th:field="*{DoctorTariff}" id="DoctorTariff" placeholder="DoctorTariff" required min="0">
     <br/>
     <input type="submit" value="Update doctor">
 </form>
