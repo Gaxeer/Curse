@@ -129,7 +129,7 @@ public class RegistrationService {
         List<String> Buffer;
         for(String rawSumDiag: RawSumDiags){
             Buffer = Arrays.asList(rawSumDiag.split(","));
-            SumDiag sumDiag = new SumDiag((Buffer.get(0)), Long.parseLong(Buffer.get(1)), simpleDateFormat.parse(Buffer.get(3)), simpleDateFormat.parse(Buffer.get(4)));
+            SumDiag sumDiag = new SumDiag((Buffer.get(0)), Float.parseFloat(Buffer.get(1)), simpleDateFormat.parse(Buffer.get(2)), simpleDateFormat.parse(Buffer.get(3)));
             ParsedSumDiags.add(sumDiag);
         }
         return ParsedSumDiags;
