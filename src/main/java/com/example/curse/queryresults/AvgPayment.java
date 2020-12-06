@@ -13,9 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AvgPayment {
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date StartDate;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date EndDate;
+    private String diagnosis_name;
+
+    private float average_payment;
 }

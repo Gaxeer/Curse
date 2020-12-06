@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.curse.model.*;
 import com.example.curse.queryresults.BestDoc;
+import com.example.curse.queryresults.ClientsByDate;
 import com.example.curse.queryresults.ShortTreatment;
 import com.example.curse.queryresults.SpecificDate;
 import com.example.curse.repo.*;
@@ -122,9 +123,10 @@ public class CurseController {
     }
 
     @PostMapping("/specific")
-    public String SpecificRegistrations(@Valid SpecificDate specificDate, Model model){
-        List<String> specificRegistrations = registrationService.SpecificRegistration(specificDate);
-        model.addAttribute("Data", specificRegistrations);
+    public String SpecificRegistrations(SpecificDate specificDate, Model model) throws ParseException {
+        ArrayList<ClientsByDate> clientsByDate = registrationService.SpecificRegistration(specificDate);
+        model.addAttribute("Data", clientsByDate);
+        System.out.println(clientsByDate);
         return "queryresults";
     }
 

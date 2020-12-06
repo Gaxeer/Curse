@@ -2,21 +2,80 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Clients</title>
+    <title>Query results</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 </br>
-<div th:each="DataUnit:${Data}">
-    <span style="margin:10px;" th:text="${DataUnit}"></span>
-<br/>
+<div class = whole_table th:if="${Data != NULL}">
+    <h2 style="color: white; text-align: center;" >Clients' data for specific period</h2>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Visit Date</th>
+            <th scope="col">Discharge</th>
+            <th scope="col">Doctor's Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="DataUnit:${Data}">
+            <td th:text="${DataUnit.first_name}"></td>
+            <td th:text="${DataUnit.last_name}"></td>
+            <td th:text="${#dates.format(DataUnit.visit_date, 'dd/MM/YYYY')}"></td>
+            <td th:text="${#dates.format(DataUnit.discharge_date, 'dd/MM/YYYY')}"></td>
+            <td th:text="${DataUnit.doctor_name}"></td>-->
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-success btn-block" href="/">Main menu</a>
 </div>
-<div th:each="Doc:${BestDoc}">
-    <span style="margin:10px;" th:text="${Doc.DoctorName}"></span>
-    <span style="margin:10px;" th:text="${Doc.Patients}"></span>
-    <br/>
 </div>
-<div th:each="Client:${ShortTreatment}">
+<div class = whole_table th:if="${BestDoc != NULL}">
+    <h2 style="color: white; text-align: center;" >Doctor with the most patients for last 12 month</h2>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Doctor's Name</th>
+            <th scope="col">Number of patients</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Doc:${BestDoc}">
+            <td th:text="${Doc.DoctorName}"></td>
+            <td th:text="${Doc.Patients}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-success btn-block" href="/">Main menu</a>
+</div>
+
+<div class = whole_table th:if="${ShortTreatment != NULL}">
+    <h2 style="color: white; text-align: center;" >Registrations with treatment less than 10 day</h2>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Client's ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Visit Date</th>
+            <th scope="col">Discharge</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Client:${ShortTreatment}">
+            <td th:text="${Client.client_id}"></td>
+            <td th:text="${Client.first_name}"></td>
+            <td th:text="${Client.last_name}"></td>
+            <td th:text="${#dates.format(Client.Visit_Date, 'dd/MM/YYYY')}"></td>
+            <td th:text="${#dates.format(Client.Discharge_Date, 'dd/MM/YYYY')}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-success btn-block" href="/">Main menu</a>
+</div>
+<div >
     <span style="margin:10px;" th:text="${Client}"></span>
     <br/>
 </div>
@@ -34,7 +93,7 @@
 </div>
 
 
-<div id = whole_table th:if="${registrations != NULL}">
+<div class = whole_table th:if="${registrations != NULL}">
     <h2 style="color: white; text-align: center;">Most expensive treatment cases</h2>
     <table class="table table-dark">
         <thead>
@@ -57,8 +116,8 @@
             <td th:text="${registration.ClientID}"></td>
             <td th:text="${registration.Diagnosis}"></td>
             <td th:text="${registration.Doctor}"></td>
-            <td th:text="${#dates.format(registration.VisitDate, 'DD/MM/YYYY')}"></td>
-            <td th:text="${#dates.format(registration.DischargeDate, 'DD/MM/YYYY')}"></td>
+            <td th:text="${#dates.format(registration.VisitDate, 'dd/MM/YYYY')}"></td>
+            <td th:text="${#dates.format(registration.DischargeDate, 'dd/MM/YYYY')}"></td>
             <td th:text="${registration.Severity}"></td>
             <td th:text="${registration.Payment}"></td>
         </tr>
@@ -78,7 +137,7 @@
         background-color: black;
     }
 
-    #whole_table {
+    .whole_table {
         margin: 7% 20% 0;
     }
     .table-dark th, .table-dark td{

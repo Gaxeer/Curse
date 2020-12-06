@@ -31,8 +31,8 @@
                 <td th:text="${registration.ClientID}"></td>
                 <td th:text="${registration.Diagnosis}"></td>
                 <td th:text="${registration.Doctor}"></td>
-                <td th:text="${#dates.format(registration.VisitDate, 'YYYY/DD/MM')}"></td>
-                <td th:text="${#dates.format(registration.DischargeDate, 'YYYY/DD/MM')}"></td>
+                <td th:text="${#dates.format(registration.VisitDate, 'dd/MM/YYYY')}"></td>
+                <td th:text="${#dates.format(registration.DischargeDate, 'dd/MM/YYYY')}"></td>
                 <td th:text="${registration.Severity}"></td>
                 <td th:text="${registration.Payment}"></td>
                 <td style="cursor: pointer; text-align: center;" th:onclick="|window.location.href='@{registration-update/{id}(id=${registration.id})}'|">Edit</a></td>

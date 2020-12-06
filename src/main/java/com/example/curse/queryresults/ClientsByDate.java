@@ -1,5 +1,6 @@
 package com.example.curse.queryresults;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,11 +13,17 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class MostExpensiveTreatment {
-        @DateTimeFormat(pattern = "yyyy-mm-dd")
-        private Date StartDate;
+public class ClientsByDate {
+    private String first_name;
 
-        @DateTimeFormat(pattern = "yyyy-mm-dd")
-        private Date EndDate;
-    }
+    private String last_name;
 
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date visit_date;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date discharge_date;
+
+    private String doctor_name;
+
+}

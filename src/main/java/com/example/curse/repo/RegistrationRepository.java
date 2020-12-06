@@ -29,7 +29,7 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
     @Query(value = "select * from SumDiag()", nativeQuery = true)
     List<String> SumDiag();
 
-    @Query(value = "select diagnosis_name, avg(payment) from registrations join diagnoses d on registrations.diagnosis = d.diagnosis_id group by diagnosis_name", nativeQuery = true)
+    @Query(value = "select diagnosis_name, avg(payment) as average_payment from registrations join diagnoses d on registrations.diagnosis = d.diagnosis_id group by diagnosis_name", nativeQuery = true)
     List<String> AvgPayment();
 
     @Query(value = "SELECT sum(payment) FROM registrations WHERE discharge_date > ?1 AND discharge_date < ?2", nativeQuery = true)
