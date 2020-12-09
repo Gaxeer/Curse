@@ -48,13 +48,29 @@ public class CurseController {
     //Registration Controllers
     @GetMapping("/registrations")
     public String findAll(Model model){
+        List<Client> clients = clientService.findAll();
+        List<Diagnosis> diagnoses = diagnosisService.findAll();
+        List<Category> categories = categoryService.findAll();
+        List<Doctor> doctors = doctorService.findAll();
+        model.addAttribute("clients", clients);
+        model.addAttribute("diagnoses", diagnoses);
+        model.addAttribute("categories", categories);
+        model.addAttribute("doctors", doctors);
         List<Registration> registrations = registrationService.findAll();
         model.addAttribute("registrations", registrations);
         return "registration-list";
     }
 
     @GetMapping("/registration-create")
-    public String createRegistrationForm(Registration registration){
+    public String createRegistrationForm(Registration registration, Model model){
+        List<Client> clients = clientService.findAll();
+        List<Diagnosis> diagnoses = diagnosisService.findAll();
+        List<Category> categories = categoryService.findAll();
+        List<Doctor> doctors = doctorService.findAll();
+        model.addAttribute("clients", clients);
+        model.addAttribute("diagnoses", diagnoses);
+        model.addAttribute("categories", categories);
+        model.addAttribute("doctors", doctors);
         return "registration-create";
     }
 
@@ -146,6 +162,14 @@ public class CurseController {
 
     @GetMapping("/registration-update/{id}")
     public String updateRegistrationForm(@PathVariable("id") Long id, Model model){
+        List<Client> clients = clientService.findAll();
+        List<Diagnosis> diagnoses = diagnosisService.findAll();
+        List<Category> categories = categoryService.findAll();
+        List<Doctor> doctors = doctorService.findAll();
+        model.addAttribute("clients", clients);
+        model.addAttribute("diagnoses", diagnoses);
+        model.addAttribute("categories", categories);
+        model.addAttribute("doctors", doctors);
         Registration registration = registrationService.findById(id);
         model.addAttribute("registration", registration);
         return "registration-update";
@@ -198,8 +222,8 @@ public class CurseController {
 
     @GetMapping("/hospclient")
     public String getClientByID(Model model){
-        Client client = new Client();
-        model.addAttribute("client", client);
+        List<Client> clients = clientService.findAll();
+        model.addAttribute("clients", clients);
         return "hospsform";
     }
 

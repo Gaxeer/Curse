@@ -7,17 +7,37 @@
 </head>
 <body>
 <form action="#" th:action="@{/registration-create}" th:object="${registration}" method="post">
-    <label for="Category">Category</label>
-    <input type="number" th:field="*{Category}" id="Category" placeholder="Category" required min="1">
+    <label for="Category">Discount</label>
+    <select class="form-control" id="Category" name="Category" required>
+        <option selected disabled value=''>Select Discount</option>
+        <option th:each="category : ${categories}"
+                th:value="${category.CategoryID}"
+                th:text="${category.Discount * 100} + '%'"></option>
+    </select>
     <br/>
-    <label for="ClientID">Client's ID</label>
-    <input type="number" th:field="*{ClientID}" id="ClientID" placeholder="ClientID" required min="1">
+    <label for="Client">Client</label>
+    <select class="form-control" id="Client" name="Client" required>
+        <option selected disabled value=''>Select Client</option>
+        <option th:each="client : ${clients}"
+                th:value="${client.ClientID}"
+                th:text="${client.FirstName}+' '+${client.LastName}"></option>
+    </select>
     <br/>
     <label for="Diagnosis">Diagnosis</label>
-    <input type="number" th:field="*{Diagnosis}" id="Diagnosis" placeholder="Diagnosis" required min="1">
+    <select class="form-control" id="Diagnosis" name="Diagnosis" required>
+        <option selected disabled value=''>Select Diagnosis</option>
+        <option th:each="diagnosis : ${diagnoses}"
+                th:value="${diagnosis.DiagnosisID}"
+                th:text="${diagnosis.DiagnosisName}"></option>
+    </select>
     <br/>
     <label for="Doctor">Doctor</label>
-    <input type="number" th:field="*{Doctor}" id="Doctor" placeholder="Doctor" required min="1">
+    <select class="form-control" id="Doctor" name="Doctor" required>
+        <option selected disabled value='' >Select Doctor</option>
+        <option th:each="doctor : ${doctors}"
+                th:value="${doctor.DoctorID}"
+                th:text="${doctor.DoctorName}"></option>
+    </select>
     <br/>
     <label for="VisitDate">Visit Date</label>
     <input type="date" th:field="*{VisitDate}" id="VisitDate" placeholder="VisitDate" required>
@@ -32,6 +52,9 @@
 </form>
 </body>
 <style>
+    .form-control {
+        width: 12%;
+    }
     body{
         background-color: black;
         color:white;

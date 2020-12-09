@@ -20,7 +20,7 @@
             <tbody>
             <tr th:each="category: ${categories}">
                 <td th:text="${category.CategoryID}"></td>
-                <td th:text="${category.Discount}"></td>
+                <td th:text="${category.Discount * 100} + '%'"></td>
                 <td style="cursor: pointer; text-align: center;" th:onclick="|window.location.href='@{category-update/{id}(id=${category.CategoryID})}'|">Edit</td>
                 <td style="cursor: pointer; text-align: center;" th:onclick="|window.location.href='@{category-delete/{id}(id=${category.CategoryID})}'|">Delete</td>
             </tr>

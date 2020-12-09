@@ -36,7 +36,6 @@ public class ClientService {
     public void deleteById(Long id){
         clientRepository.deleteById(id);
     }
-
     public List<ClientHosps> Hosps(Client client) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         List<String> RawClientHosps = clientRepository.Hosps(client.getClientID());
@@ -46,8 +45,7 @@ public class ClientService {
             Buffer = Arrays.asList(rawClientHosp.split(","));
             ClientHosps ClientHosp = new ClientHosps(Long.parseLong(Buffer.get(0)), (Buffer.get(1)), Buffer.get(2),Buffer.get(3),Buffer.get(4), simpleDateFormat.parse(Buffer.get(5)), simpleDateFormat.parse(Buffer.get(6)));
             ParsedClientHosps.add(ClientHosp);
-        }
-
+        };
         return ParsedClientHosps;
     }
 }

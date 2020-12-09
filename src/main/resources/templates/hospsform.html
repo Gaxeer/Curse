@@ -8,8 +8,13 @@
 <body>
 <form action="#" th:action="@{/hosps}" th:object="${client}" method="post">
     <label for="ClientID">Client ID</label>
-    <input class="form-control" type="number" th:field="*{ClientID}" id="ClientID" placeholder="Enter Client ID" required min="1">
-    <input class="btn btn-primary" type="submit" value="Get Clients">
+    <select class="form-control" id="ClientID" name="ClientID" required>
+        <option selected disabled value=''>Select Client</option>
+        <option th:each="client : ${clients}"
+                th:value="${client.ClientID}"
+                th:text="${client.FirstName}+' '+${client.LastName}"></option>
+    </select>
+    <input class="btn btn-primary" type="submit" value="Get Client">
     <br/>
 </form>
 </body>

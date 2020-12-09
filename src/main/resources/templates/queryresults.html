@@ -216,7 +216,7 @@
         <tr th:each="registration:${registrations}"}>
             <td th:text="${registration.id}"></td>
             <td th:text="${registration.Category}"></td>
-            <td th:text="${registration.ClientID}"></td>
+            <td th:text="${registration.Client}"></td>
             <td th:text="${registration.Diagnosis}"></td>
             <td th:text="${registration.Doctor}"></td>
             <td th:text="${#dates.format(registration.VisitDate, 'dd/MM/YYYY')}"></td>

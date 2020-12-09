@@ -27,22 +27,22 @@ public class Registration {
         private long id;
 
         @Column(name="Category")
-        @Min(value = 1, message = "Category can't be less than 1" )
+        @Min(value = 1, message = "CategoryID can't be less than 1" )
         @JoinColumn(name = "Category", referencedColumnName = "Category_ID")
         private int Category;
 
-        @Column(name="Client_ID")
+        @Column(name="Client")
         @Min(value = 1, message = "ClientID can't be less than 1" )
-        @JoinColumn(name = "Client_ID", referencedColumnName = "Client_ID")
-        private int ClientID;
+        @JoinColumn(name = "Client", referencedColumnName = "Client_ID")
+        private int Client;
 
         @Column(name="Diagnosis")
-        @Min(value = 1, message = "Diagnosis can't be less than 1" )
+        @Min(value = 1, message = "DiagnosisID can't be less than 1" )
         @JoinColumn(name = "Diagnosis", referencedColumnName = "Diagnosis_ID")
         private int Diagnosis;
 
         @Column(name="Doctor")
-        @Min(value = 1, message = "Doctor can't be less than 1" )
+        @Min(value = 1, message = "DoctorID can't be less than 1" )
         @JoinColumn(name = "Doctor", referencedColumnName = "Doctor_ID")
         private int Doctor;
 
